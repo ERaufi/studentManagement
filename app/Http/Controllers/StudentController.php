@@ -2,37 +2,85 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
     //
-    protected $name;
-    protected $age;
-    public function __construct()
+    public function addData()
     {
-        $this->name = 'My Name';
-        $this->age = 20;
+
+        $item = new Student();
+        $item->name = 'tester';
+        $item->email = 'tester@gmail.com';
+        $item->age = 25;
+        $item->date_of_birth = '2010-01-01';
+        $item->gender = 'f';
+        $item->score = 66;
+        $item->save();
+
+        // DB::table('students')->insert([
+        //     [
+        //         'name' => 'testerasdfa',
+        //         'email' => 'tester2222@gmail.com',
+        //         'age' => 15,
+        //         'date_of_birth' => '2010-01-01',
+        //         'gender' => 'f'
+        //     ],
+        //     [
+        //         'name' => 'abbb',
+        //         'email' => 'sss@gmail.com',
+        //         'age' => 15,
+        //         'date_of_birth' => '2010-01-01',
+        //         'gender' => 'f'
+        //     ],
+        //     [
+        //         'name' => 'sdfsdf',
+        //         'email' => 'xx@gmail.com',
+        //         'age' => 15,
+        //         'date_of_birth' => '2010-01-01',
+        //         'gender' => 'f'
+        //     ]
+        // ]);
+
+        return 'added successfully';
     }
 
-    public function index()
+    public function getData()
     {
-        return 'hello from controller';
+        // $items = DB::table('students')
+        //     ->avg('score');
+
+        $items = Student::find(55);
+
+        return $items;
     }
 
-    public function aboutUs()
+    public function updateData()
     {
-        // return 'ID No ' . $id . 'Name ' . $name;
+        // DB::table('students')->where('id', 203)->update([
+        //     'name' => 'updated Name',
+        //     'age' => 20,
+        //     'email' => 'updated-email@test.com'
+        // ]);
 
-        // $name = $this->privateFunction();
+        $item = Student::find(55);
+        $item->name = 'updated student';
+        $item->age = 10;
+        $item->update();
 
-        // return $this->name;
-        return $this->age;
-        return view('aboutus', compact('id', 'name'));
+
+        return 'Updated Successfully';
     }
 
-    private function privateFunction()
+    public function deleteData()
     {
-        return 'hello world';
+        // DB::table('students')->where('id', '>', 203)->delete();
+
+        Student::findOrFail(57)->delete();
+
+        return 'Deleted Successfully';
     }
 }

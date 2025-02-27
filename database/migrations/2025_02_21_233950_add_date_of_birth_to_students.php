@@ -15,6 +15,7 @@ return new class extends Migration
             //
             $table->date('date_of_birth')->nullable();
             $table->enum('gender', ['m', 'f'])->default('m');
+            $table->integer('score')->nullable(false)->default(0);
         });
     }
 
