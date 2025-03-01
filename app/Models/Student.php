@@ -10,8 +10,8 @@ class Student extends Model
     use HasFactory;
     //
 
-    protected $hidden = [
-        'name',
-        'age'
-    ];
+    // protected $hidden = [
+    //     'name',
+    //     'age'
+    // ];
 }
