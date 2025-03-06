@@ -53,8 +53,13 @@ class StudentController extends Controller
         // $items = DB::table('students')
         //     ->avg('score');
 
-        $items = Student::find(55);
+        // $items = Student::find(55);
+        $items = Student::all();
 
+        // $items = Student::onlyTrashed()->get();
+        // $items = Student::withTrashed()->get();
+
+        // $items = Student::withTrashed()->find(1)->restore();
         return $items;
     }
 
@@ -79,7 +84,8 @@ class StudentController extends Controller
     {
         // DB::table('students')->where('id', '>', 203)->delete();
 
-        Student::findOrFail(57)->delete();
+        // Student::findOrFail(1)->delete();
+        Student::find(1)->forceDelete();
 
         return 'Deleted Successfully';
     }
@@ -119,6 +125,20 @@ class StudentController extends Controller
 
         $items = Student::whereAll(['age', 'score', 'id'], 25)
             ->get();
+
+        return $items;
+    }
+
+    public function queryScope()
+    {
+        $items = Student::female(21)->get();
+
+        return $items;
+    }
+
+    public function secondQuery()
+    {
+        $items = Student::female()->get();
 
         return $items;
     }
