@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Basic HTML5 Template</title>
         <link rel="stylesheet" href="styles.css">
+        @yield('head')
         <style>
             body {
                 font-family: Arial, sans-serif;
