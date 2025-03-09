@@ -20,7 +20,50 @@ class StudentController extends Controller
                 'score',
                 'gender'
             ], 'like', '%' . $request->search . '%');
-        })->get();
+        })->paginate(10);
         return view('students.index', compact('students'));
+    }
+
+
+    public function create(Request $request)
+    {
+        $student = new Student();
+        $student->name = $request->name;
+        $student->email = $request->email;
+        $student->age = $request->age;
+        $student->date_of_birth = $request->date_of_birth;
+        $student->gender = $request->gender;
+        $student->score = $request->score;
+        $student->save();
+
+        return redirect('student');
+    }
+
+    public function edit($id)
+    {
+        $student = Student::findOrFail($id);
+
+        return view('students.edit', compact('student'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $student = Student::findOrFail($id);
+        $student->name = $request->name;
+        $student->email = $request->email;
+        $student->age = $request->age;
+        $student->date_of_birth = $request->date_of_birth;
+        $student->gender = $request->gender;
+        $student->score = $request->score;
+        $student->update();
+
+        return redirect('student');
+    }
+
+    public function destroy(Request $request, $id)
+    {
+        $student = Student::findOrFail($id)->delete();
+
+        return redirect('student');
     }
 }
