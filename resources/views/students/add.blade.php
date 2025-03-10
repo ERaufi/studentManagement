@@ -5,6 +5,17 @@
 
 
 @section('content')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+
     <section>
         <div class="card shadow-lg">
             <div class="card-header bg-primary text-white">
@@ -15,36 +26,38 @@
                     @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
+                        <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
+                        <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}">
                     </div>
                     <div class="mb-3">
                         <label for="age" class="form-label">Age</label>
-                        <input type="number" class="form-control" id="age" name="age" required>
+                        <input type="number" class="form-control" id="age" name="age" value="{{ old('age') }}">
                     </div>
                     <div class="mb-3">
                         <label for="age" class="form-label">Date of Birth</label>
-                        <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" required>
+                        <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" value="{{ old('date_of_birth') }}">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Gender</label>
                         <div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="male" value="m" checked>
+                                <input class="form-check-input" type="radio" name="gender" id="male" value="m"
+                                    {{ old('gender') == 'm' ? 'checked' : '' }}>
                                 <label class="form-check-label" for="male">Male</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="female" value="f">
+                                <input class="form-check-input" type="radio" name="gender" id="female" value="f"
+                                    {{ old('gender') == 'f' ? 'checked' : '' }}>
                                 <label class="form-check-label" for="female">Female</label>
                             </div>
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="score" class="form-label">Score</label>
-                        <input type="number" class="form-control" id="score" name="score" value="0" required>
+                        <input type="number" class="form-control" id="score" name="score" value="{{ old('score') }}">
                     </div>
                     <button type="submit" class="btn btn-success">Submit</button>
                 </form>

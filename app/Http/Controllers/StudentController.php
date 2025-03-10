@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StudentAddRequest;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,7 +26,7 @@ class StudentController extends Controller
     }
 
 
-    public function create(Request $request)
+    public function create(StudentAddRequest $request)
     {
         $student = new Student();
         $student->name = $request->name;
