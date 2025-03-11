@@ -22,7 +22,7 @@
                 <h5 class="mb-0">Student Registration</h5>
             </div>
             <div class="card-body">
-                <form action="{{ URL('student/create') }}" method="POST">
+                <form action="{{ URL('student/create') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
@@ -58,6 +58,11 @@
                     <div class="mb-3">
                         <label for="score" class="form-label">Score</label>
                         <input type="number" class="form-control" id="score" name="score" value="{{ old('score') }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Image</label>
+                        <input type="file" class="form-control" id="image" name="image" accept="image/*">
                     </div>
                     <button type="submit" class="btn btn-success">Submit</button>
                 </form>

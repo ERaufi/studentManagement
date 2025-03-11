@@ -29,6 +29,7 @@ class StudentAddRequest extends FormRequest
             'date_of_birth' => 'required|date',
             'gender' => 'required|in:m,f',
             'score' => 'required|integer|min:0|max:100',
+            'image' => 'nullable|image|mimes:png,jpg,gif|max:2048'
         ];
     }
 

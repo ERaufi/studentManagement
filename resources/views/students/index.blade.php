@@ -141,6 +141,11 @@
             <tbody>
                 @foreach ($students as $student)
                     <tr>
+                        <td>
+                            @if ($student->image)
+                                <img src="{{ asset('storage/' . $student->image) }}" width="150">
+                            @endif
+                        </td>
                         <td>{{ $student->id }}</td>
                         <td>{{ $student->name }}</td>
                         <td>{{ $student->email }}</td>
