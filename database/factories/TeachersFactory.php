@@ -19,6 +19,8 @@ class TeachersFactory extends Factory
     {
         return [
             'user_id' => User::factory()->create(['user_type' => 'teacher'])->id,
+            'name' => $this->faker->name(),
+            'email' => $this->faker->email(),
             'phone' => $this->faker->phoneNumber,
         ];
     }

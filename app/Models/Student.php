@@ -24,4 +24,9 @@ class Student extends Model
             ->where('age', $age)
         ;
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

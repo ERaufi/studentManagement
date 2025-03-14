@@ -20,12 +20,12 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
-        Teachers::factory(100)->create();
-        Classes::factory(200)->create();
-        Student::factory(10000)->create();
-        Subjects::factory(200)->create();
-        ClassSubject::factory(200)->create();
-        Grades::factory(500)->create();
+        Teachers::factory(10)->create();
+        Classes::factory(20)->create();
+        Student::factory(60)->create();
+        Subjects::factory(10)->create();
+        ClassSubject::factory(30)->create();
+        Grades::factory(60)->create();
         // User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
