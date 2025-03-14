@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('students', function (Blueprint $table) {
-            $table->softDeletes();
-            //
+        Schema::create('teachers', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained('users')->unique();
+            $table->string('phone');
+            $table->timestamps();
         });
     }
 
@@ -22,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('students', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('teachers');
     }
 };

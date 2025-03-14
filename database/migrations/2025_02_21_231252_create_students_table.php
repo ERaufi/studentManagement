@@ -16,6 +16,12 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->integer('age');
+            $table->date('date_of_birth')->nullable();
+            $table->enum('gender', ['m', 'f'])->default('m');
+            $table->integer('score')->nullable(false)->default(0);
+            $table->string('image')->nullable(true);
+            $table->foreignId('user_id')->constrained('users')->unique();
+            $table->foreignId('class_id')->constrained('classes');
             $table->timestamps();
         });
     }

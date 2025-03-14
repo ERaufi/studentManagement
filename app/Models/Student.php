@@ -9,13 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Student extends Model
 {
     use HasFactory;
-    use SoftDeletes;
     //
-
-    // protected $hidden = [
-    //     'name',
-    //     'age'
-    // ];
 
     public function scopeMale($query, $age = 25)
     {
