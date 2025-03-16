@@ -10,7 +10,7 @@ class TeachersController extends Controller
     //
     public function index()
     {
-        return Teachers::all();
+        return Teachers::with('classes')->get();
     }
 
     public function add()
