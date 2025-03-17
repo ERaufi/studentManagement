@@ -34,4 +34,12 @@ class Student extends Model
     {
         return $this->belongsTo(Classes::class, 'class_id');
     }
+
+    public function subjects()
+    {
+        return $this->belongsToMany(Subjects::class, 'grades', 'student_id', 'subject_id')
+            ->withPivot('grade')
+            ->withTimestamps()
+        ;
+    }
 }

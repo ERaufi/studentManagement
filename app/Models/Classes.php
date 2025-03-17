@@ -19,4 +19,9 @@ class Classes extends Model
     {
         return $this->belongsTo(Teachers::class, 'teacher_id');
     }
+
+    public function subjects()
+    {
+        return $this->belongsToMany(Subjects::class, 'class_subjects', 'class_id', 'subject_id');
+    }
 }
