@@ -42,4 +42,16 @@ class Student extends Model
             ->withTimestamps()
         ;
     }
+
+    public function teacher()
+    {
+        return $this->hasOneThrough(
+            Teachers::class,
+            Classes::class,
+            'id',
+            'id',
+            'class_id',
+            'teacher_id'
+        );
+    }
 }

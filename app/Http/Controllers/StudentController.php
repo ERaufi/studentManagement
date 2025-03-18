@@ -24,7 +24,7 @@ class StudentController extends Controller
         //     ], 'like', '%' . $request->search . '%');
         // })->paginate(10);
 
-        return Student::with('subjects')->get();
+        return Student::with('teacher')->get();
         return view('students.index', compact('students'));
     }
 
