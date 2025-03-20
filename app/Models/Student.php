@@ -54,4 +54,9 @@ class Student extends Model
             'teacher_id'
         );
     }
+
+    public function images()
+    {
+        return $this->morphMany(Images::class, 'imageable');
+    }
 }

@@ -128,7 +128,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>Image</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Age</th>
@@ -142,11 +142,10 @@
                 @foreach ($students as $student)
                     <tr>
                         <td>
-                            @if ($student->image)
-                                <img src="{{ asset('storage/' . $student->image) }}" width="150">
+                            @if (count($student->images) > 0)
+                                <img src="{{ asset('storage/' . $student->images->first()->path) }}" width="150">
                             @endif
                         </td>
-                        <td>{{ $student->id }}</td>
                         <td>{{ $student->name }}</td>
                         <td>{{ $student->email }}</td>
                         <td>{{ $student->age }}</td>
