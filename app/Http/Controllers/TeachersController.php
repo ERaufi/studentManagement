@@ -8,9 +8,18 @@ use Illuminate\Http\Request;
 class TeachersController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
-        return Teachers::with('students')->get();
+        $teachers = Teachers::with('images')
+            ->when($request->search, function ($query) use ($request) {
+                return $query->whereAny([
+                    'name',
+                    'email',
+                    'phone',
+                ], 'like', '%' . $request->search . '%');
+            })->paginate(10);;
+        return view('teachers.index', compact('teachers'));
+        // return ;
     }
 
     public function add()

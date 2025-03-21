@@ -20,7 +20,7 @@ Route::prefix('student')->controller(StudentController::class)->group(function (
     Route::delete('delete/{id}', 'destroy');
 });
 
-Route::prefix('teacher')->controller(TeachersController::class)->group(function () {
+Route::prefix('teachers')->controller(TeachersController::class)->group(function () {
     Route::get('/', 'index');
     Route::view('add', 'students.add');
     Route::post('create', 'create');

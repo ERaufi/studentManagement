@@ -25,4 +25,9 @@ class Teachers extends Model
     {
         return $this->hasManyThrough(Student::class, Classes::class, 'teacher_id', 'class_id');
     }
+
+    public function images()
+    {
+        return $this->morphMany(Images::class, 'imageable');
+    }
 }
