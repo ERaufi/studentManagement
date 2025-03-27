@@ -31,3 +31,7 @@ Route::prefix('teachers')->controller(TeachersController::class)->group(function
 
 Route::get('classes', [ClassesController::class, 'index']);
 Route::get('users', [UserController::class, 'index']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

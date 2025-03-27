@@ -1,108 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Basic HTML5 Template</title>
-        <link rel="stylesheet" href="styles.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        @yield('head')
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 0;
-                display: flex;
-                flex-direction: column;
-                min-height: 100vh;
-            }
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-            nav ul {
-                list-style-type: none;
-                padding: 0;
-                background: #005bb5;
-                overflow: hidden;
-                display: flex;
-                justify-content: center;
-            }
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-            nav ul li {
-                padding: 14px 20px;
-            }
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
-            nav ul li a {
-                color: white;
-                text-decoration: none;
-            }
+    <!-- Scripts -->
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+</head>
+<body>
+    <div id="app">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    {{ config('app.name', 'Laravel') }}
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            .container {
-                display: flex;
-                flex: 1;
-                max-width: 100%;
-            }
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav me-auto">
 
-            .sidebar {
-                width: 250px;
-                background: #f4f4f4;
-                padding: 15px;
-            }
+                    </ul>
 
-            .main-content {
-                flex: 1;
-                padding: 20px;
-            }
+                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ms-auto">
+                        <!-- Authentication Links -->
+                        @guest
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                </li>
+                            @endif
 
-            footer {
-                background: #004080;
-                color: white;
-                text-align: center;
-                padding: 10px;
-                position: relative;
-                bottom: 0;
-                width: 100%;
-            }
-        </style>
-        @yield('styles')
-    </head>
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
+                                </a>
 
-    <body>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+                    </ul>
+                </div>
+            </div>
         </nav>
 
-        <div class="container">
-            <aside class="sidebar">
-                <h2>Sidebar</h2>
-                <ul>
-                    <li><a href="{{ URL('/students') }}">Students</a></li>
-                    <li><a href="{{ URL('/teachers') }}">Teachers</a></li>
-                    <li><a href="#">Link 3</a></li>
-                </ul>
-            </aside>
-            <main class="main-content">
-
-
-                @yield('content')
-
-
-
-
-            </main>
-        </div>
-
-        <footer>
-            <p>&copy; 2025 My Website. All rights reserved.</p>
-        </footer>
-    </body>
-
-
-    @yield('scripts')
-
+        <main class="py-4">
+            @yield('content')
+        </main>
+    </div>
+</body>
 </html>
