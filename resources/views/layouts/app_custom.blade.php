@@ -74,6 +74,40 @@
                 <li><a href="#">About</a></li>
                 <li><a href="#">Services</a></li>
                 <li><a href="#">Contact</a></li>
+
+
+
+
+
+
+                @guest
+                    @if (Route::has('login'))
+                        <li>
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </li>
+                    @endif
+
+                    @if (Route::has('register'))
+                        <li>
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </li>
+                    @endif
+                @else
+                    <li>
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </li>
+                @endguest
+
+
+
             </ul>
         </nav>
 
@@ -81,7 +115,7 @@
             <aside class="sidebar">
                 <h2>Sidebar</h2>
                 <ul>
-                    <li><a href="{{ URL('/students') }}">Students</a></li>
+                    <li><a href="{{ URL('/student') }}">Students</a></li>
                     <li><a href="{{ URL('/teachers') }}">Teachers</a></li>
                     <li><a href="#">Link 3</a></li>
                 </ul>
