@@ -59,4 +59,9 @@ class Student extends Model
     {
         return $this->morphMany(Images::class, 'imageable');
     }
+
+    public function grades()
+    {
+        return $this->hasMany(Grades::class, 'student_id');
+    }
 }

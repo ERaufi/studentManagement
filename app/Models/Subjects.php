@@ -9,4 +9,10 @@ class Subjects extends Model
 {
     //
     use HasFactory;
+
+
+    public function grades()
+    {
+        return $this->hasMany(Grades::class, 'subject_id');
+    }
 }

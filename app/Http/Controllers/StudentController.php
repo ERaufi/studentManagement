@@ -14,19 +14,26 @@ class StudentController extends Controller
     //
     public function index(Request $request)
     {
-        $students = Student::with('images')
-            ->when($request->search, function ($query) use ($request) {
-                return $query->whereAny([
-                    'name',
-                    'age',
-                    'email',
-                    'date_of_birth',
-                    'score',
-                    'gender'
-                ], 'like', '%' . $request->search . '%');
-            })->paginate(10);
-        // return Student::with('teacher')->get();
-        return view('students.index', compact('students'));
+        // $students = Student::with('images')
+        //     ->when($request->search, function ($query) use ($request) {
+        //         return $query->whereAny([
+        //             'name',
+        //             'age',
+        //             'email',
+        //             'date_of_birth',
+        //             'score',
+        //             'gender'
+        //         ], 'like', '%' . $request->search . '%');
+        //     })->paginate(10);
+        return Student::with('grades')
+            ->withCount('grades')
+            ->withMax('grades', 'grade')
+            ->withSum('grades', 'grade')
+            ->withAvg('grades', 'grade')
+            ->withMin('grades', 'grade')
+            ->withMax('grades', 'grade')
+            ->get();
+        // return view('students.index', compact('students'));
     }
 
 

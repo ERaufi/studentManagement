@@ -10,6 +10,8 @@ class ClassesController extends Controller
     //
     public function index()
     {
-        return Classes::with('subjects')->get();
+        return Classes::with('subjects')
+            ->withCount('students')
+            ->get();
     }
 }

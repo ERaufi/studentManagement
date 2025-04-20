@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\TeachersController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\TeachersMiddleware;
@@ -32,6 +33,7 @@ Route::prefix('teachers')->controller(TeachersController::class)->middleware('te
 
 Route::get('classes', [ClassesController::class, 'index']);
 Route::get('users', [UserController::class, 'index']);
+Route::get('subjects', [SubjectsController::class, 'index']);
 
 Auth::routes();
 
