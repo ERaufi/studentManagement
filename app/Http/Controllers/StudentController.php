@@ -28,10 +28,9 @@ class StudentController extends Controller
         return Student::with('grades')
             ->withCount('grades')
             ->withMax('grades', 'grade')
+            ->withMin('grades', 'grade')
             ->withSum('grades', 'grade')
             ->withAvg('grades', 'grade')
-            ->withMin('grades', 'grade')
-            ->withMax('grades', 'grade')
             ->get();
         // return view('students.index', compact('students'));
     }

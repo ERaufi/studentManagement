@@ -3,6 +3,7 @@
 use App\Http\Middleware\GlobalMiddleware;
 use App\Http\Middleware\StudentsMiddleware;
 use App\Http\Middleware\TeachersMiddleware;
+use App\Http\Middleware\TerminableMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -17,7 +18,8 @@ return Application::configure(basePath: dirname(__DIR__))
         //
 
         $middleware->use([
-            GlobalMiddleware::class,
+            // GlobalMiddleware::class,
+            TerminableMiddleware::class,
         ]);
         $middleware->alias([
             'teachers' => TeachersMiddleware::class,
