@@ -21,7 +21,7 @@ class TerminableMiddleware
 
     public function terminate($request, $response)
     {
-        Log::info('📝 Request Log', [
+        Log::info('Request Log', [
             'method' => $request->method(),
             'path' => $request->path(),
             'status' => $response->getStatusCode(),

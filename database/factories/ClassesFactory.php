@@ -20,7 +20,7 @@ class ClassesFactory extends Factory
         return [
             'teacher_id' => Teachers::inRandomOrder()->first()->id ?? Teachers::factory(),
             'name' => $this->faker->word,
-            'description' => $this->faker->paragraph,
+            'description' => $this->faker->sentence,
         ];
     }
 }

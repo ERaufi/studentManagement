@@ -18,10 +18,11 @@ class StudentFactory extends Factory
      */
     public function definition(): array
     {
+        $user = User::factory()->create(['user_type' => 'student']);
         return [
-            'user_id' => User::factory()->create(['user_type' => 'student'])->id,
-            'name' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
+            'user_id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
             'age' => $this->faker->numberBetween(6, 18),
             'date_of_birth' => $this->faker->date(),
             'gender' => $this->faker->randomElement(['m', 'f']),

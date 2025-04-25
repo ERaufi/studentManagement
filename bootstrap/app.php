@@ -18,7 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
         //
 
         $middleware->use([
-            // GlobalMiddleware::class,
+            GlobalMiddleware::class,
             TerminableMiddleware::class,
         ]);
         $middleware->alias([

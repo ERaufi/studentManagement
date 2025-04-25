@@ -117,7 +117,7 @@
                 <ul>
                     <li><a href="{{ URL('/student') }}">Students</a></li>
                     <li><a href="{{ URL('/teachers') }}">Teachers</a></li>
-                    <li><a href="#">Link 3</a></li>
+                    <li><a href="{{ URL('/classes') }}">Class</a></li>
                 </ul>
             </aside>
             <main class="main-content">

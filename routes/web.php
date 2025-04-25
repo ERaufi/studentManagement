@@ -31,7 +31,15 @@ Route::prefix('teachers')->controller(TeachersController::class)->middleware('te
     Route::delete('delete/{id}', 'destroy');
 });
 
-Route::get('classes', [ClassesController::class, 'index']);
+Route::prefix('classes')->controller(ClassesController::class)->group(function () {
+    Route::get('/', 'index');
+    Route::get('add', 'create');
+    Route::post('create', 'store');
+    Route::get('edit/{id}', 'edit');
+    Route::post('update/{id}', 'update');
+    Route::delete('delete/{id}', 'destroy');
+});
+
 Route::get('users', [UserController::class, 'index']);
 Route::get('subjects', [SubjectsController::class, 'index']);
 
