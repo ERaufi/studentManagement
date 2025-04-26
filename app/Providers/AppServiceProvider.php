@@ -27,8 +27,9 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('edit-student', function (User $user, Student $student) {
             return $user->id === $student->user_id;
         });
-        Gate::define('delete-student', function (User $user, Student $student) {
-            return $user->id === $student->user_id;
+
+        Gate::define('teachers', function (User $user) {
+            return $user->user_type === 'teacher';
         });
     }
 }

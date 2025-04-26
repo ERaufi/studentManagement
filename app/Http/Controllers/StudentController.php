@@ -7,6 +7,7 @@ use App\Models\Images;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
 class StudentController extends Controller
@@ -68,12 +69,18 @@ class StudentController extends Controller
     {
         $student = Student::findOrFail($id);
 
+        Gate::authorize('edit-student', $student);
+
         return view('students.edit', compact('student'));
     }
 
     public function update(Request $request, $id)
     {
         $student = Student::findOrFail($id);
+
+        Gate::authorize('edit-student', $student);
+
+
         $student->name = $request->name;
         $student->email = $request->email;
         $student->age = $request->age;

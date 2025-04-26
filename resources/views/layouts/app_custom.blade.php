@@ -116,7 +116,9 @@
                 <h2>Sidebar</h2>
                 <ul>
                     <li><a href="{{ URL('/student') }}">Students</a></li>
-                    <li><a href="{{ URL('/teachers') }}">Teachers</a></li>
+                    @can('teachers')
+                        <li><a href="{{ URL('/teachers') }}">Teachers</a></li>
+                    @endcan
                     <li><a href="{{ URL('/classes') }}">Class</a></li>
                 </ul>
             </aside>

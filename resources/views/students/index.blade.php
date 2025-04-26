@@ -157,7 +157,7 @@
                                 <a href="{{ URL('student/edit', $student->id) }}" class="editButton">Edit</a>
                             @endcan
 
-                            @can('delete-student', $student)
+                            @can('teachers')
                                 <form action="{{ URL('student/delete', $student->id) }}" method="post" style="display:inline;"
                                     onsubmit="return confirm('Are you sure you want to delete this student')">
 
@@ -166,6 +166,7 @@
                                     <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                 </form>
                             @endcan
+
 
                         </td>
                     </tr>
