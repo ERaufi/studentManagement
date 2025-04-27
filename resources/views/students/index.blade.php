@@ -153,7 +153,7 @@
                         <td>{{ $student->gender }}</td>
                         <td>{{ $student->score }}</td>
                         <td>
-                            @can('edit-student', $student)
+                            @can('updateStudents', $student)
                                 <a href="{{ URL('student/edit', $student->id) }}" class="editButton">Edit</a>
                             @endcan
 

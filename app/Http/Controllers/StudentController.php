@@ -69,7 +69,7 @@ class StudentController extends Controller
     {
         $student = Student::findOrFail($id);
 
-        Gate::authorize('edit-student', $student);
+        Gate::authorize('updateStudents', $student);
 
         return view('students.edit', compact('student'));
     }
@@ -78,7 +78,7 @@ class StudentController extends Controller
     {
         $student = Student::findOrFail($id);
 
-        Gate::authorize('edit-student', $student);
+        Gate::authorize('updateStudents', $student);
 
 
         $student->name = $request->name;
