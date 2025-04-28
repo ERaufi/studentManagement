@@ -28,8 +28,8 @@ class AppServiceProvider extends ServiceProvider
         //     return $user->id === $student->user_id;
         // });
 
-        // Gate::define('teachers', function (User $user) {
-        //     return $user->user_type === 'teacher';
-        // });
+        Gate::define('teachers', function (User $user) {
+            return $user->user_type === 'teacher';
+        });
     }
 }
