@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClassesController;
+use App\Http\Controllers\SessionDemoController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\TeachersController;
@@ -46,3 +47,5 @@ Route::get('subjects', [SubjectsController::class, 'index']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/session', [SessionDemoController::class, 'index'])->name('session.demo');

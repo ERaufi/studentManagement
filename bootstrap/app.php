@@ -23,7 +23,7 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
         $middleware->alias([
             'teachers' => TeachersMiddleware::class,
-            'students' => StudentsMiddleware::class
+            // 'students' => StudentsMiddleware::class
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
