@@ -46,8 +46,10 @@ class CacheDemoController extends Controller
 
 
         // ✅ Retrieve 'countries_with_cities' from cache or store it for 1 day if not found
-        $countries = Cache::remember('countries_with_cities', 86400, function () {
-            return Countries::with('cities')->get();
+        $countries = Cache::remember('countries_with_cities', 600, function () {
+            return Countries::with('cities')->get()->toArray();
         });
+
+        return $countries;
     }
 }
