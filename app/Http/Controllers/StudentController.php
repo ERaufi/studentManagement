@@ -46,7 +46,7 @@ class StudentController extends Controller
 
         $student = new Student();
         $student->user_id = 2;
-        $student->class_id = 2;
+        $student->class_id = 42;
         $student->name = $request->name;
         $student->email = $request->email;
         $student->age = $request->age;
@@ -56,11 +56,16 @@ class StudentController extends Controller
         // $student->image = $imagePath;
         $student->save();
 
-        $images = new Images();
-        $images->path = $imagePath;
-        $images->imageable_id = $student->id;
-        $images->imageable_type = Student::class;
-        $images->save();
+        if ($request->hasFile('image')) {
+            $images = new Images();
+            $images->path = $imagePath;
+            $images->imageable_id = $student->id;
+            $images->imageable_type = Student::class;
+            $images->save();
+        }
+
+        session()->flash('success', 'student created successfully');
+
 
         return redirect('student');
     }
@@ -89,6 +94,8 @@ class StudentController extends Controller
         $student->score = $request->score;
         $student->update();
 
+        session()->flash('success', 'student updated successfully');
+
         return redirect('student');
     }
 
@@ -101,6 +108,8 @@ class StudentController extends Controller
         }
 
         $student->delete();
+
+        session()->flash('success', 'student deleted successfully');
 
         return redirect('student');
     }

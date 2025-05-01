@@ -116,6 +116,12 @@
 
 @section('content')
     <section>
+
+        @if (session('success'))
+            <div class="aleert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <h2>Students</h2>
         <form action={{ URL('student') }} method="GET">
             <div class="search">

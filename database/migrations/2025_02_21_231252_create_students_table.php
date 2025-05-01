@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('score')->nullable(false)->default(0);
             $table->string('image')->nullable(true);
             $table->foreignId('user_id')->constrained('users')->unique();
-            $table->foreignId('class_id')->constrained('classes');
+            $table->foreignId('class_id')->nullable(true)->constrained('classes');
             $table->timestamps();
         });
     }

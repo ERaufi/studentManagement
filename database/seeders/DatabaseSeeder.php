@@ -26,6 +26,10 @@ class DatabaseSeeder extends Seeder
         Subjects::factory(10)->create();
         ClassSubject::factory(30)->create();
         Grades::factory(60)->create();
+        $this->call([
+            CountryAndCitySeeder::class,
+        ]);
+
         // User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
