@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CacheDemoController;
 use App\Http\Controllers\ClassesController;
+use App\Http\Controllers\EmailsController;
 use App\Http\Controllers\SessionDemoController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectsController;
@@ -51,3 +52,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/session', [SessionDemoController::class, 'index'])->name('session.demo');
 Route::get('/cache-demo', [CacheDemoController::class, 'index']);
+Route::get('send-mail', [EmailsController::class, 'welcomeEmail']);
