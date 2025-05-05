@@ -16,7 +16,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('student')->controller(StudentController::class)->middleware('auth')->group(function () {
+Route::prefix('student')->controller(StudentController::class)->middleware('auth', 'verified')->group(function () {
     Route::get('/', 'index');
     Route::view('add', 'students.add');
     Route::post('create', 'create');
@@ -46,7 +46,7 @@ Route::prefix('classes')->controller(ClassesController::class)->group(function (
 Route::get('users', [UserController::class, 'index']);
 Route::get('subjects', [SubjectsController::class, 'index']);
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
