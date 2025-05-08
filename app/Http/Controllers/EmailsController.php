@@ -2,16 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\WelcomeMail;
+use App\Jobs\ResultsJob;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 
 class EmailsController extends Controller
 {
     //
     public function welcomeEmail()
     {
-        Mail::to('recipent@example.com')->send(new WelcomeMail());
+
+        $students = User::where('user_type', 'student')
+            ->limit(10)
+            ->get();
+
+        foreach ($students as $student) {
+            ResultsJob::dispatch($student->email);
+        }
 
         return 'email sent succesfully';
     }
