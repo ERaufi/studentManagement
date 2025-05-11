@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\StudentRegisteredEvent;
 use App\Http\Requests\StudentAddRequest;
 use App\Models\Images;
 use App\Models\Student;
@@ -45,8 +46,8 @@ class StudentController extends Controller
         }
 
         $student = new Student();
-        $student->user_id = 2;
-        $student->class_id = 42;
+        // $student->user_id = 2;
+        // $student->class_id = 42;
         $student->name = $request->name;
         $student->email = $request->email;
         $student->age = $request->age;
@@ -55,6 +56,11 @@ class StudentController extends Controller
         $student->score = $request->score;
         // $student->image = $imagePath;
         $student->save();
+
+
+        event(new StudentRegisteredEvent($student));
+
+
 
         if ($request->hasFile('image')) {
             $images = new Images();
