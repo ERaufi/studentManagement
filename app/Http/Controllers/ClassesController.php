@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Classes;
+use App\Models\Student;
 use App\Models\Teachers;
 use Illuminate\Http\Request;
 
@@ -68,5 +69,24 @@ class ClassesController extends Controller
         $class = Classes::findOrFail($id);
         $class->delete();
         return redirect('/classes')->with('success', 'Class deleted successfully');
+    }
+
+
+
+    public function assignStudent($class_id)
+    {
+        //
+        $students = Student::all();
+        $class = Classes::where('id', $class_id)->first();
+        return view('Class.AssignStudent', compact('class', 'students'));
+    }
+
+    public function assignStudentClass(Request $request)
+    {
+        $student = Student::where('id', $request->student_id)->first();
+        $student->class_id = $request->class_id;
+        $student->update();
+
+        return redirect('/classes')->with('success', 'Student Assigned Successfully');
     }
 }

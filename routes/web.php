@@ -42,6 +42,8 @@ Route::prefix('classes')->controller(ClassesController::class)->group(function (
     Route::get('edit/{id}', 'edit');
     Route::post('update/{id}', 'update');
     Route::delete('delete/{id}', 'destroy');
+    Route::get('assign-student/{class_id}', 'assignStudent');
+    Route::post('assign-student-class', 'assignStudentClass');
 });
 
 Route::get('users', [UserController::class, 'index']);

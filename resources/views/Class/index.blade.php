@@ -142,15 +142,15 @@
                     <td>{{ $class->teacher->name }}</td>
                     <td>{{ $class->description }}</td>
                     <td>
-                        <a href="{{ URL('classes/edit', $class->id) }}">Edit</a> |
-
+                        <a class="btn btn-info" href="{{ URL('classes/assign-student', $class->id) }}">Assign Student</a>
+                        <a class="btn btn-success" href="{{ URL('classes/edit', $class->id) }}">Edit</a>
 
                         <form action="{{ URL('classes/delete', $class->id) }}" method="post" style="display:inline;"
                             onsubmit="return confirm('Are you sure you want to delete this student')">
 
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </td>
                 </tr>
