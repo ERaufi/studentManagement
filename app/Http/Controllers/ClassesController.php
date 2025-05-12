@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\AsignToClassEvent;
 use App\Models\Classes;
 use App\Models\Student;
 use App\Models\Teachers;
@@ -86,6 +87,8 @@ class ClassesController extends Controller
         $student = Student::where('id', $request->student_id)->first();
         $student->class_id = $request->class_id;
         $student->update();
+
+        event(new AsignToClassEvent('you have been added to new class', $student->user_id));
 
         return redirect('/classes')->with('success', 'Student Assigned Successfully');
     }

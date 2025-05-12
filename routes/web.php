@@ -8,9 +8,8 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\TeachersController;
 use App\Http\Controllers\UserController;
-use App\Http\Middleware\TeachersMiddleware;
-use App\Models\Classes;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -56,3 +55,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/session', [SessionDemoController::class, 'index'])->name('session.demo');
 Route::get('/cache-demo', [CacheDemoController::class, 'index']);
 Route::get('send-mail', [EmailsController::class, 'welcomeEmail']);
+Broadcast::routes();

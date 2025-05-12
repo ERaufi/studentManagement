@@ -65,6 +65,8 @@
             }
         </style>
         @yield('styles')
+
+        @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     </head>
 
     <body>
@@ -121,6 +123,13 @@
                     @endcan
                     <li><a href="{{ URL('/classes') }}">Class</a></li>
                 </ul>
+
+                <div class="userDetails">
+                    <h3>Name : {{ Auth::user()->name }}</h3>
+                    <h3>Type : {{ Auth::user()->user_type }} </h3>
+                </div>
+
+
             </aside>
             <main class="main-content">
 
@@ -138,7 +147,19 @@
         </footer>
     </body>
 
+    <script>
+        setTimeout(() => {
+            window.Echo.channel('public-chat')
+                .listen('AsignToClassEvent', (e) => {
+                    console.log(e.message);
+                });
 
+            window.Echo.private('private-chat.{{ Auth::user()->id }}')
+                .listen('AsignToClassEvent', (e) => {
+                    console.log('private channel broadcast ', e.message);
+                })
+        }, 200);
+    </script>
     @yield('scripts')
 
 </html>
