@@ -20,8 +20,8 @@ class Student extends Model
 
     public function scopeFemale($query, $age = 25)
     {
-        $query->where('gender', 'f')
-            ->where('age', $age)
+        return $query->where('gender', 'f')
+            ->where('age', $age);
         ;
     }
 
